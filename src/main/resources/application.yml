@@ -1,0 +1,62 @@
+# Configurações do servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+  tomcat:
+    relaxed-query-chars: '|,{,},[,],^'
+
+# Configurações do H2 Database
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+    #  ddl-auto: update  # Cria ou atualiza o esquema do banco
+    show-sql: true      # Exibe as queries SQL no console
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  # Configurações do RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+  # Configurações do Swagger/OpenAPI
+  springdoc:
+    api-docs:
+      path: /v3/api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+      operations-sorter: method
+
+  # Configuração do Logging
+  logging:
+    level:
+      root: INFO
+      org.springframework.web: DEBUG
+      com.example.insurance: DEBUG
+
+  # Configurações de integração com serviços externos (Catálogo Mock)
+  catalog-service:
+    url:
+      product: http://localhost:8081/catalog/products
+      offer: http://localhost:8081/catalog/offers
+  catalog:
+    products-url: http://wiremock:8080/catalog/products/
+    offers-url: http://wiremock:8080/catalog/offers/
+
+  # Configurações customizadas do aplicativo
+  insurance:
+    policy:
+      min-premium: 50.0
+      max-premium: 1000.0
