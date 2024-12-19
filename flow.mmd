@@ -1,0 +1,16 @@
+A seguradora ACME precisa de uma API REST capaz de receber e consultar
+cotações de seguros
+
+graph TD
+A[Início: Requisição POST /quotes] -->|Validação de Dados|B[Validações da Requisição]
+B -->|Produto e Oferta Válidos|C[Consulta API Mockada]
+B -->|Erro de Validação|F[Retorna Erro 400]
+C -->|Produto e Oferta Ativos|D[Regras de Negócio]
+C -->|Produto ou Oferta Inativos|F[Retorna Erro 400]
+D -->|Validações de Coberturas e Assistências|E[Persistir Cotação no Banco de Dados]
+E --> G[Publicar Mensagem no RabbitMQ]
+G -->|Mensagem de Cotação Recebida|H[Serviço de Apólices]
+H -->|Mensagem de Apólice Emitida|I[Atualizar Cotação com ID da Apólice]
+I --> J[Consulta GET /quotes/:id]
+F --> K[Fim com Erro]
+J --> L[Fim com Sucesso]
