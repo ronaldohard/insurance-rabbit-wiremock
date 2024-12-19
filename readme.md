@@ -33,7 +33,7 @@ banco de dados e integração com RabbitMQ para troca de mensagens.
 ### 1. **Clonar o Repositório**
 
 ```bash
-git clone https://github.com/seu-usuario/insurance-quote-app.git
+git clone https://github.com/ronaldohard/insurance-rabbit-wiremock/tree/%40rprates/sandbox-insurance-quote
 ```
 
 ```
