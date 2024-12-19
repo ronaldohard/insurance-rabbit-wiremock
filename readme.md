@@ -54,6 +54,8 @@ Certifique-se de que as portas abaixo estão disponíveis:
 
 Execute o seguinte comando para iniciar a aplicação e suas dependências:
 
+./docker/docker-compose
+
 ```
 docker-compose up --build
 ```
